@@ -22,7 +22,10 @@ jobs:
           coverage: none
 
       - name: Install Composer dependencies
-        run: composer install -n --prefer-dist
+        run: |
+          composer install -n --prefer-dist
+          cp .env.example .env.ci
+          php artisan key:generate
 
       - name: Run tests
         run: ./vendor/bin/phpunit
