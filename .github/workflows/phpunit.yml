@@ -21,6 +21,12 @@ jobs:
           extension: ctype, bcmath, fileinfo, json, mbstring, openssl, pdo, tokenizer, xml
           coverage: none
 
+      - name: Cache Composer Dependencies
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: composer-${{ hasFiles('composer.lock') }}
+
       - name: Install Composer dependencies
         run: |
           composer install -n --prefer-dist
