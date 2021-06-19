@@ -21,6 +21,7 @@ jobs:
           extensions: ctype, bcmath, fileinfo, json, mbstring, openssl, pdo, tokenizer, xml
           coverage: none
 
+      # cache the vendor folder
       - name: Cache Composer Dependencies
         uses: actions/cache@v2
         with:
@@ -30,7 +31,7 @@ jobs:
       - name: Install Composer dependencies
         run: |
           composer install -n --prefer-dist
-          cp .env.example .env.ci
+          cp .env.example .env
           php artisan key:generate
 
       - name: Run tests
